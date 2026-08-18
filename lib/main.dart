@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'WelcomeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,27 +11,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: WelcomeScreen(),
       debugShowCheckedModeBanner: false,
-    );
-  }
-}
-
-class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text(
-          'Welcome to BMI Calculator',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+      home: WelcomeScreen(),
     );
   }
 }
