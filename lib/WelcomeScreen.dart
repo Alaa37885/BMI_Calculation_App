@@ -44,7 +44,10 @@ class WelcomeScreen extends StatelessWidget {
                       backgroundColor: Color(0xff484783),
                     ),
                     onPressed: () {
-                      onGetStarted(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => CalculationScreen()),
+                      );
                     },
                     child: Text("Get Started",
                       style: TextStyle(fontWeight: FontWeight.w700, fontSize: 16, color: Colors.white,),
@@ -59,13 +62,5 @@ class WelcomeScreen extends StatelessWidget {
       ),
     );
   }
-
-  void onGetStarted(BuildContext context) {
-    // push
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => CalculationScreen()),
-    );
-
   }
-}
+

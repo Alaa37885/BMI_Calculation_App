@@ -55,6 +55,8 @@ flutter:
 
   assets:
     - assets/images/Illustration.png
+    - assets/images/Group.png
+    - assets/images/female.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

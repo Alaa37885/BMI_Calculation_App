@@ -13,6 +13,8 @@ class CalculationScreen extends StatelessWidget {
             },
             child: Icon(Icons.arrow_back_ios)),
 
+        title: const Text("BMI", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Color(0xff01502EE5)),),
+
       ),
       body: Center(child: Text("Cal Screen" ,
 
