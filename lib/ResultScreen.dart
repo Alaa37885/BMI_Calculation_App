@@ -259,7 +259,8 @@ class ResultScreen extends StatelessWidget {
                       description,
                       style: const TextStyle(
                         color: Colors.white,
-                        fontSize: 17,
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
 
