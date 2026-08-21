@@ -13,10 +13,8 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _birthController = TextEditingController();
-  TextEditingController _heightController =
-  TextEditingController(text: "1");
-  TextEditingController _weightController =
-  TextEditingController(text: "1");
+  TextEditingController _heightController = TextEditingController(text: "1");
+  TextEditingController _weightController = TextEditingController(text: "1");
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -202,9 +200,7 @@ class _CalculationScreenState extends State<CalculationScreen> {
                             : null,
                       ),
 
-                      child: Image.asset(
-                        "assets/images/Group.png",
-                      ),
+                      child: Image.asset("assets/images/Group.png",),
                     ),
                   ),
 
@@ -228,9 +224,7 @@ class _CalculationScreenState extends State<CalculationScreen> {
                             : null,
                       ),
 
-                      child: Image.asset(
-                        "assets/images/female.png",
-                      ),
+                      child: Image.asset("assets/images/female.png",),
                     ),
                   ),
                 ],
@@ -488,7 +482,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
                               MaterialPageRoute(
                                 builder: (context) {
-
                                   return ResultScreen(
                                     name: _nameController.text,
                                     bmi: bmi,
@@ -503,18 +496,15 @@ class _CalculationScreenState extends State<CalculationScreen> {
                           }
 
                         } on DioException catch (e) {
-
                           // Close loading
                           if (context.mounted) {
                             Navigator.pop(context);
                           }
-
                           print("DIO ERROR:");
                           print(e);
 
                           // Show error
                           if (context.mounted) {
-
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
@@ -530,12 +520,10 @@ class _CalculationScreenState extends State<CalculationScreen> {
                           if (context.mounted) {
                             Navigator.pop(context);
                           }
-
                           print("ERROR:");
                           print(e);
 
                           if (context.mounted) {
-
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(

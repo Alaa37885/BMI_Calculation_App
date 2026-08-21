@@ -21,15 +21,12 @@ class ResultScreen extends StatelessWidget {
   // calc calculatedAge
   int get calculatedAge {
     final DateTime today = DateTime.now();
-
     int age = today.year - birthDate.year;
-
     if (today.month < birthDate.month ||
         (today.month == birthDate.month &&
             today.day < birthDate.day)) {
       age--;
     }
-
     return age;
   }
 
@@ -64,10 +61,8 @@ class ResultScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffF4F6FF),
 
-      body: SafeArea(
-        child: Padding(
+      body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
-
           child: Column(
             children: [
 
@@ -330,7 +325,6 @@ class ResultScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
     );
   }
 }
