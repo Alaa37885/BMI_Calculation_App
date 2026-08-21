@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// Decerilization
+
 class ResultScreen extends StatelessWidget {
   final String name;
   final double bmi;

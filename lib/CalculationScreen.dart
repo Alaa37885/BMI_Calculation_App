@@ -435,6 +435,10 @@ class _CalculationScreenState extends State<CalculationScreen> {
                           },
                         );
 
+                        // api cnstrains : link , query , headers , quthorizatipon
+                        // Dependinies , dev Dependinies (that i didn't nees in production
+                        // icons)
+
                         try {
                           // Call API
                           var response = await dio.get(
@@ -456,8 +460,7 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
                           // Get BMI
                           double bmi =
-                          (response.data["data"]["bmi"] as num)
-                              .toDouble();
+                          (response.data["data"]["bmi"] as num).toDouble();
 
                           // Close loading
                           if (context.mounted) {
@@ -483,40 +486,13 @@ class _CalculationScreenState extends State<CalculationScreen> {
                               ),
                             );
                           }
-
-                        } on DioException catch (e) {
-                          // Close loading
-                          if (context.mounted) {
-                            Navigator.pop(context);
-                          }
-                          print("DIO ERROR:");
-                          print(e);
-
-                          // Show error
-                          if (context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  "API Error: ${e.message}",
-                                ),
-                              ),
-                            );
-                          }
-
                         } catch (e) {
-                          // Close loading
                           if (context.mounted) {
                             Navigator.pop(context);
-                          }
-                          print("ERROR:");
-                          print(e);
 
-                          if (context.mounted) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
-                                content: Text(
-                                  "Something went wrong: $e",
-                                ),
+                                content: Text("Error $e"),
                               ),
                             );
                           }
