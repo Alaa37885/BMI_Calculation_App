@@ -392,14 +392,11 @@ class _CalculationScreenState extends State<CalculationScreen> {
               // Get Started
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 children: [
 
                   SizedBox(
                     width: 380,
-
                     child: ElevatedButton(
-
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(9),
@@ -409,7 +406,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                       ),
 
                       onPressed: () async {
-
                         // Check form
                         if (!formKey.currentState!.validate()) {
                           return;
@@ -432,9 +428,7 @@ class _CalculationScreenState extends State<CalculationScreen> {
                         showDialog(
                           context: context,
                           barrierDismissible: false,
-
                           builder: (context) {
-
                             return Center(
                               child: CircularProgressIndicator(),
                             );
@@ -442,7 +436,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                         );
 
                         try {
-
                           // Call API
                           var response = await dio.get(
                             "https://api.apiverve.com/v1/bmicalculator",
