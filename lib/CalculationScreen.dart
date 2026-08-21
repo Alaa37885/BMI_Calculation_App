@@ -486,7 +486,9 @@ class _CalculationScreenState extends State<CalculationScreen> {
                               ),
                             );
                           }
-                        } catch (e) {
+                        }
+
+                        catch (e) {
                           if (context.mounted) {
                             Navigator.pop(context);
 
