@@ -446,13 +446,11 @@ class _CalculationScreenState extends State<CalculationScreen> {
                           // Call API
                           var response = await dio.get(
                             "https://api.apiverve.com/v1/bmicalculator",
-
                             queryParameters: {
                               "weight": weight,
                               "height": height,
                               "unit": "metric",
                             },
-
                             options: Options(
                               headers: {
                                 "x-api-key":
@@ -460,7 +458,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                               },
                             ),
                           );
-
                           print("API RESPONSE:");
                           print(response.data);
 
@@ -476,7 +473,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
                           // Go to result screen
                           if (context.mounted) {
-
                             Navigator.push(
                               context,
 
@@ -515,7 +511,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                           }
 
                         } catch (e) {
-
                           // Close loading
                           if (context.mounted) {
                             Navigator.pop(context);
