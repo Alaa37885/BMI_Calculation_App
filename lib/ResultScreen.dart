@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Decerilization
-
+//  Use model !!
 class ResultScreen extends StatelessWidget {
   final String name;
   final double bmi;
@@ -76,7 +76,7 @@ class ResultScreen extends StatelessWidget {
 
               Container(
                 width: double.infinity,
-                height: 228,
+                height: 330,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: const Color(0xff7772CF),
@@ -108,7 +108,7 @@ class ResultScreen extends StatelessWidget {
                         "$calculatedAge years old.",
                         style: const TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 18,
                         ),
                       ),
                     ),
@@ -116,7 +116,7 @@ class ResultScreen extends StatelessWidget {
                     // BMI
                     Positioned(
                       left: 50,
-                      top: 70,
+                      top: 110,
                       child: Column(
                         children: [
                           Text(
@@ -135,7 +135,7 @@ class ResultScreen extends StatelessWidget {
                               "BMI Calc",
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 16,
+                                fontSize: 18,
                               ),
                             ),
                           ),
@@ -153,7 +153,7 @@ class ResultScreen extends StatelessWidget {
                             "$height cm",
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -164,7 +164,7 @@ class ResultScreen extends StatelessWidget {
                             "Height",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 18,
                             ),
                           ),
                         ],
@@ -174,10 +174,10 @@ class ResultScreen extends StatelessWidget {
                     // VERTICAL DIVIDER
                     Positioned(
                       left: 89,
-                      bottom: 14,
+                      bottom: 16,
                       child: Container(
                         width: 2,
-                        height: 40,
+                        height: 55,
                         color: Colors.white54,
                       ),
                     ),
@@ -192,7 +192,7 @@ class ResultScreen extends StatelessWidget {
                             "$weight kg",
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -203,7 +203,7 @@ class ResultScreen extends StatelessWidget {
                             "Weight",
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontSize: 18,
                             ),
                           ),
                         ],
