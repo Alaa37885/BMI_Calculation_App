@@ -1,74 +1,92 @@
+import 'package:bmi_aug/models/bmi_model.dart';
 import 'package:flutter/material.dart';
 
-// Decerilization
-//  Use model !!
-class ResultScreen extends StatelessWidget {
-  final String name;
-  final double bmi;
-  final int height;
-  final int weight;
-  final DateTime birthDate;
-  final int gender;
+class BmiDetails extends StatelessWidget {
+  final BmiResponse bmiModel;
 
-  const ResultScreen({
+  const BmiDetails({
     super.key,
-    required this.name,
-    required this.bmi,
-    required this.height,
-    required this.weight,
-    required this.birthDate,
-    required this.gender,
+    required this.bmiModel,
   });
 
-  // calc calculatedAge
-  int get calculatedAge {
-    final DateTime today = DateTime.now();
-    int age = today.year - birthDate.year;
-    if (today.month < birthDate.month ||
-        (today.month == birthDate.month &&
-            today.day < birthDate.day)) {
+  int calculateAge() {
+    if (bmiModel.birthDate == null || bmiModel.birthDate!.isEmpty) {
+      return 0;
+    }
+
+    DateTime birth;
+
+    try {
+      birth = DateTime.parse(bmiModel.birthDate!);
+    } catch (e) {
+      return 0;
+    }
+
+    DateTime today = DateTime.now();
+
+    int age = today.year - birth.year;
+
+    if (today.month < birth.month ||
+        (today.month == birth.month && today.day < birth.day)) {
       age--;
     }
+
     return age;
   }
 
+  String getBmiCategory() {
+    double bmi = bmiModel.data?.bmi ?? 0.0;
 
-  String get bmiCategory {
     if (bmi < 18.5) {
-      return "Under Weight";
+      return 'Under Weight';
     } else if (bmi < 25) {
-      return "Normal Weight";
+      return 'Normal Weight';
     } else if (bmi < 30) {
-      return "Over Weight";
+      return 'Over Weight';
     } else {
-      return "Obesity";
+      return 'Obesity';
     }
   }
 
+  String getBmiDescription() {
+    double bmi = bmiModel.data?.bmi ?? 0.0;
 
-  String get description {
     if (bmi < 18.5) {
-      return "Your BMI is less than 18.5";
+      return 'Your BMI is less than 18.5';
     } else if (bmi < 25) {
-      return "Your BMI is within the normal range";
+      return 'Your BMI is in the normal range';
     } else if (bmi < 30) {
-      return "Your BMI is above the normal range";
+      return 'Your BMI is in the overweight range';
     } else {
-      return "Your BMI is in the obesity range";
+      return 'Your BMI is in the obesity range';
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    int age = calculateAge();
+
+    String name = bmiModel.name ?? 'Unknown';
+    String gender = bmiModel.gender ?? 'Unknown';
+
+    double bmi = bmiModel.data?.bmi ?? 0.0;
+
+    String height = bmiModel.data?.height ?? '0';
+    String weight = bmiModel.data?.weight ?? '0';
+
+    String bmiCategory = getBmiCategory();
+    String description = getBmiDescription();
+
     return Scaffold(
       backgroundColor: const Color(0xffF4F6FF),
 
-      body: Padding(
+      body: SafeArea(
+        child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
+
           child: Column(
             children: [
-
-              const SizedBox(height: 45),
+              const SizedBox(height: 20),
 
               // =============================================================
               // TOP RESULT CARD
@@ -77,7 +95,9 @@ class ResultScreen extends StatelessWidget {
               Container(
                 width: double.infinity,
                 height: 330,
+
                 padding: const EdgeInsets.all(16),
+
                 decoration: BoxDecoration(
                   color: const Color(0xff7772CF),
                   borderRadius: BorderRadius.circular(15),
@@ -89,8 +109,9 @@ class ResultScreen extends StatelessWidget {
                     Positioned(
                       left: 0,
                       top: 15,
+
                       child: Text(
-                        "$name ${gender == 0 ? "(male)" : "(female)"}",
+                        "$name ($gender)",
 
                         style: const TextStyle(
                           color: Colors.white,
@@ -104,8 +125,10 @@ class ResultScreen extends StatelessWidget {
                     Positioned(
                       left: 0,
                       top: 42,
+
                       child: Text(
-                        "$calculatedAge years old.",
+                        "$age years old.",
+
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -117,10 +140,12 @@ class ResultScreen extends StatelessWidget {
                     Positioned(
                       left: 50,
                       top: 110,
+
                       child: Column(
                         children: [
                           Text(
                             bmi.toStringAsFixed(1),
+
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 28,
@@ -128,11 +153,12 @@ class ResultScreen extends StatelessWidget {
                             ),
                           ),
 
-                          // BMI Calc
                           Transform.translate(
                             offset: const Offset(0, -2),
+
                             child: const Text(
                               "BMI Calc",
+
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -147,10 +173,12 @@ class ResultScreen extends StatelessWidget {
                     Positioned(
                       left: 0,
                       bottom: 18,
+
                       child: Column(
                         children: [
                           Text(
                             "$height cm",
+
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -162,6 +190,7 @@ class ResultScreen extends StatelessWidget {
 
                           const Text(
                             "Height",
+
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -175,6 +204,7 @@ class ResultScreen extends StatelessWidget {
                     Positioned(
                       left: 89,
                       bottom: 16,
+
                       child: Container(
                         width: 2,
                         height: 55,
@@ -186,10 +216,12 @@ class ResultScreen extends StatelessWidget {
                     Positioned(
                       left: 108,
                       bottom: 18,
+
                       child: Column(
                         children: [
                           Text(
                             "$weight kg",
+
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -201,6 +233,7 @@ class ResultScreen extends StatelessWidget {
 
                           const Text(
                             "Weight",
+
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -215,6 +248,7 @@ class ResultScreen extends StatelessWidget {
                       right: 5,
                       top: 0,
                       bottom: 0,
+
                       child: Image.asset(
                         "assets/images/body.png",
                         width: 100,
@@ -231,68 +265,74 @@ class ResultScreen extends StatelessWidget {
               // BMI INFORMATION CARD
               // =====================================================
 
-              Container(
-                width: double.infinity,
-                height: 400,
-                padding: const EdgeInsets.all(15),
-                decoration: BoxDecoration(
-                  color: const Color(0xff006039),
-                  borderRadius: BorderRadius.circular(15),
-                ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
 
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
+                  padding: const EdgeInsets.all(15),
 
-                    // CATEGORY
-                    Text(
-                      bmiCategory,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xff006039),
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+
+                      children: [
+                        // CATEGORY
+                        Text(
+                          bmiCategory,
+
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        const SizedBox(height: 5),
+
+                        // DESCRIPTION
+                        Text(
+                          description,
+
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 19,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+
+                        const SizedBox(height: 10),
+
+                        // INFORMATION
+                        const Text(
+                          "Lorem ipsum dolor sit amet consectetur. "
+                              "Sagittis ritticidunt dui enim imperdiet sapien "
+                              "cursus velit pharetra. Viverra justo tempor "
+                              "dictum odio. Nisl non dui integer orci nulla "
+                              "eget laoreet tellus. Orci nunc a orci convallis "
+                              "ac orci. Urna auctor at elementum sit ante "
+                              "maecenas ullamcorper rhoncus dictum. "
+                              "Morbi venenatis lectus ultrices euismod. "
+                              "Laoreet purus risus amet enim sagittis ut. "
+                              "Consectetur libero orci urna.",
+
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            height: 1.45,
+                          ),
+                        ),
+                      ],
                     ),
-
-                    const SizedBox(height: 5),
-
-                    // DESCRIPTION
-                    Text(
-                      description,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 19,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-
-                    const SizedBox(height: 10),
-
-                    // INFORMATION
-                    const Text(
-                      "Lorem ipsum dolor sit amet consectetur. "
-                          "Sagittis ritticidunt dui enim imperdiet sapien "
-                          "cursus velit pharetra. Viverra justo tempor "
-                          "dictum odio. Nisl non dui integer orci nulla "
-                          "eget laoreet tellus. Orci nunc a orci convallis "
-                          "ac orci. Urna auctor at elementum sit ante "
-                          "maecenas ullamcorper rhoncus dictum. "
-                          "Morbi venenatis lectus ultrices euismod. "
-                          "Laoreet purus risus amet enim sagittis ut. "
-                          "Consectetur libero orci urna.",
-
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        height: 1.45,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
               ),
 
-              // Push button toward bottom
-              const Spacer(),
+              const SizedBox(height: 15),
 
               // =====================================================
               // CALCULATE AGAIN BUTTON
@@ -301,6 +341,7 @@ class ResultScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 height: 38,
+
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -308,6 +349,7 @@ class ResultScreen extends StatelessWidget {
 
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff484783),
+
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(7),
                     ),
@@ -315,6 +357,7 @@ class ResultScreen extends StatelessWidget {
 
                   child: const Text(
                     "Calculate BMI Again",
+
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,
@@ -324,10 +367,11 @@ class ResultScreen extends StatelessWidget {
                 ),
               ),
 
-              const SizedBox(height: 25),
+              const SizedBox(height: 20),
             ],
           ),
         ),
+      ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'ResultScreen.dart';
+import 'package:bmi_aug/ResultScreen.dart';
+import 'package:bmi_aug/models/bmi_model.dart';
 
 class CalculationScreen extends StatefulWidget {
   const CalculationScreen({super.key});
@@ -439,9 +440,8 @@ class _CalculationScreenState extends State<CalculationScreen> {
                         // Dependinies , dev Dependinies (that i didn't nees in production
                         // icons)
 
-                        try {
                           // Call API
-                          var response = await dio.get(
+                          var res = await dio.get(
                             "https://api.apiverve.com/v1/bmicalculator",
                             queryParameters: {
                               "weight": weight,
@@ -455,52 +455,19 @@ class _CalculationScreenState extends State<CalculationScreen> {
                               },
                             ),
                           );
-                          print("API RESPONSE:");
-                          print(response.data);
 
-                          // Get BMI
-                          double bmi =
-                          (response.data["data"]["bmi"] as num).toDouble();
-
-                          // Close loading
-                          if (context.mounted) {
-                            Navigator.pop(context);
-                          }
-
-                          // Go to result screen
-                          if (context.mounted) {
-                            Navigator.push(
-                              context,
-
-                              MaterialPageRoute(
-                                builder: (context) {
-                                  return ResultScreen(
-                                    name: _nameController.text,
-                                    bmi: bmi,
-                                    height: height,
-                                    weight: weight,
-                                    birthDate: selectedBirthDate!,
-                                    gender: selectedGender,
-                                  );
-                                },
-                              ),
-                            );
-                          }
+                        if(res.data != null){
+                        var data = res.data;
+                        data['name'] = _nameController.text;
+                        data['birthDate'] = _birthController.text;
+                        data['gender'] = selectedGender == 0 ? "Male" : "Female";
+                        var bmiModel = BmiResponse.fromJson(data);
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => BmiDetails(bmiModel: bmiModel)));
                         }
+                        print(res.data);
 
-                        catch (e) {
-                          if (context.mounted) {
-                            Navigator.pop(context);
 
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text("Error $e"),
-                              ),
-                            );
-                          }
-                        }
                       },
-
                       child: Text(
                         "Get Started",
                         style: TextStyle(
