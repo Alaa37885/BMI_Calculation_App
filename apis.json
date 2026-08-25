@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "NTI - REST APIs Training Collection",
+    "_postman_id": "c1a2b3c4-d5e6-7f8a-9b0c-1d2e3f4a5b6c",
+    "description": "مجموعة أمثلة عملية لشرح مبادئ الـ RESTful APIs لطلاب المعهد القومي للاتصالات (NTI).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. GET - Fetch All Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users",
+          "protocol": "https",
+          "host": ["jsonplaceholder", "typicode", "com"],
+          "path": ["users"]
+        },
+        "description": "طلب لجلب كل المستخدمين (Read All)"
+      }
+    },
+    {
+      "name": "2. GET - Fetch Single User by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/1",
+          "protocol": "https",
+          "host": ["jsonplaceholder", "typicode", "com"],
+          "path": ["users", "1"]
+        },
+        "description": "طلب لجلب مستخدم محدد بالـ ID (Read One)"
+      }
+    },
+    {
+      "name": "3. POST - Create New User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ahmed Ali\",\n  \"username\": \"ahmed_nti\",\n  \"email\": \"ahmed@example.com\"\n}"
+        },
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users",
+          "protocol": "https",
+          "host": ["jsonplaceholder", "typicode", "com"],
+          "path": ["users"]
+        },
+        "description": "طلب لإنشاء مورد جديد وإرسال Body بصيغة JSON (Create)"
+      }
+    },
+    {
+      "name": "4. PUT - Update Existing User",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Ahmed Ali Updated\",\n  \"email\": \"ahmed_updated@example.com\"\n}"
+        },
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/1",
+          "protocol": "https",
+          "host": ["jsonplaceholder", "typicode", "com"],
+          "path": ["users", "1"]
+        },
+        "description": "طلب لتحديث بيانات مورد موجود بالكامل (Update)"
+      }
+    },
+    {
+      "name": "5. DELETE - Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/1",
+          "protocol": "https",
+          "host": ["jsonplaceholder", "typicode", "com"],
+          "path": ["users", "1"]
+        },
+        "description": "طلب لحذف مورد محدد (Delete)"
+      }
+    }
+  ]
+}
