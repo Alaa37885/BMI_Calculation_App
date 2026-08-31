@@ -10,18 +10,19 @@ class BmiDetails extends StatelessWidget {
   });
 
   int calculateAge() {
-    if (bmiModel.birthDate == null || bmiModel.birthDate!.isEmpty) {
+    String birthDate = bmiModel.birthDate ?? '';
+
+    if (birthDate.isEmpty) {
       return 0;
     }
 
-    DateTime birth;
+    List<String> date = birthDate.split('/');
 
-    try {
-      birth = DateTime.parse(bmiModel.birthDate!);
-    } catch (e) {
-      return 0;
-    }
+    int day = int.parse(date[0]);
+    int month = int.parse(date[1]);
+    int year = int.parse(date[2]);
 
+    DateTime birth = DateTime(year, month, day);
     DateTime today = DateTime.now();
 
     int age = today.year - birth.year;
@@ -375,3 +376,4 @@ class BmiDetails extends StatelessWidget {
     );
   }
 }
+

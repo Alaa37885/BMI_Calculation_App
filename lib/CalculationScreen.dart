@@ -14,8 +14,8 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
   TextEditingController _nameController = TextEditingController();
   TextEditingController _birthController = TextEditingController();
-  TextEditingController _heightController = TextEditingController(text: "1");
-  TextEditingController _weightController = TextEditingController(text: "1");
+  TextEditingController _heightController = TextEditingController(text: "170");
+  TextEditingController _weightController = TextEditingController(text: "70");
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -54,10 +54,8 @@ class _CalculationScreenState extends State<CalculationScreen> {
         padding: EdgeInsets.symmetric(horizontal: 14),
         child: Form(
           key: formKey,
-
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-
             children: [
 
               // Name
@@ -73,7 +71,7 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
               TextFormField(
                 controller: _nameController,
-
+                maxLength: 50,
                 decoration: InputDecoration(
                   hintText: "ex. ahmed maged",
                   counterText: "",
@@ -89,8 +87,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                     borderSide: BorderSide.none,
                   ),
                 ),
-
-                maxLength: 50,
 
                 validator: (value) {
                   if (value == null || value.trim().isEmpty) {
@@ -115,6 +111,7 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
               TextFormField(
                 controller: _birthController,
+                maxLength: 50,
                 readOnly: true,
                 decoration: InputDecoration(
                   hintText: "ex. 1/1/2001",
@@ -131,8 +128,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                     borderSide: BorderSide.none,
                   ),
                 ),
-
-                maxLength: 50,
 
                 validator: (value) {
                   if (selectedBirthDate == null) {
@@ -179,9 +174,7 @@ class _CalculationScreenState extends State<CalculationScreen> {
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-
                 children: [
-
                   // Male
                   GestureDetector(
                     onTap: () {
@@ -196,11 +189,8 @@ class _CalculationScreenState extends State<CalculationScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Color(0x26B3B2EA),
-
-                        border: selectedGender == 0 ? Border.all(width: 1, color: Color(0xE501502E),)
-                            : null,
+                        border: selectedGender == 0 ? Border.all(width: 1, color: Color(0xE501502E),) : null,
                       ),
-
                       child: Image.asset("assets/images/Group.png",),
                     ),
                   ),
@@ -221,10 +211,8 @@ class _CalculationScreenState extends State<CalculationScreen> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         color: Color(0x26B3B2EA),
-                        border: selectedGender == 1 ? Border.all(width: 1, color: Color(0xE501502E),)
-                            : null,
+                        border: selectedGender == 1 ? Border.all(width: 1, color: Color(0xE501502E),) : null,
                       ),
-
                       child: Image.asset("assets/images/female.png",),
                     ),
                   ),
@@ -296,7 +284,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                     borderSide: BorderSide.none,
                   ),
                 ),
-
                 maxLength: 50,
 
                 validator: (value) {
@@ -327,7 +314,6 @@ class _CalculationScreenState extends State<CalculationScreen> {
                 keyboardType: TextInputType.number,
 
                 decoration: InputDecoration(
-
                   // Plus
                   suffixIcon: GestureDetector(
                     onTap: () {
@@ -430,14 +416,12 @@ class _CalculationScreenState extends State<CalculationScreen> {
                           context: context,
                           barrierDismissible: false,
                           builder: (context) {
-                            return Center(
-                              child: CircularProgressIndicator(),
-                            );
+                            return Center(child: CircularProgressIndicator(),);
                           },
                         );
 
                         // api cnstrains : link , query , headers , quthorizatipon
-                        // Dependinies , dev Dependinies (that i didn't nees in production
+                        // Dependinies , dev Dependinies (that i didn't nees in production :
                         // icons)
 
                           // Call API
