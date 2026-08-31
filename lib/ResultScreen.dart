@@ -178,7 +178,7 @@ class BmiDetails extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "$height cm",
+                            "$height ",
 
                             style: const TextStyle(
                               color: Colors.white,
@@ -221,7 +221,7 @@ class BmiDetails extends StatelessWidget {
                       child: Column(
                         children: [
                           Text(
-                            "$weight kg",
+                            "$weight ",
 
                             style: const TextStyle(
                               color: Colors.white,
