@@ -75,5 +75,5 @@ lib/
 
 ---
 
-## 🎓 Author
+## Author
       A'laa Omar Hamed .
