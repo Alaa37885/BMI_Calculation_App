@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'WelcomeScreen.dart';
+import 'package:bmi_aug/features/bmi/presentation/screens/welcome_screen.dart';
 
 void main() {
   runApp(const MyApp());

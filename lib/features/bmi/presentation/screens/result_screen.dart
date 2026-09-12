@@ -1,4 +1,4 @@
-import 'package:bmi_aug/models/bmi_model.dart';
+import 'package:bmi_aug/features/bmi/data/models/bmi_model.dart';
 import 'package:flutter/material.dart';
 
 class BmiDetails extends StatelessWidget {
@@ -89,31 +89,21 @@ class BmiDetails extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
 
-              // =============================================================
-              // TOP RESULT CARD
-              // =============================================================
-
               Container(
                 width: double.infinity,
                 height: 330,
-
                 padding: const EdgeInsets.all(16),
-
                 decoration: BoxDecoration(
                   color: const Color(0xff7772CF),
                   borderRadius: BorderRadius.circular(15),
                 ),
-
                 child: Stack(
                   children: [
-                    // NAME
                     Positioned(
                       left: 0,
                       top: 15,
-
                       child: Text(
                         "$name ($gender)",
-
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -121,45 +111,34 @@ class BmiDetails extends StatelessWidget {
                         ),
                       ),
                     ),
-
-                    // AGE
                     Positioned(
                       left: 0,
                       top: 42,
-
                       child: Text(
                         "$age years old.",
-
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
                         ),
                       ),
                     ),
-
-                    // BMI
                     Positioned(
                       left: 50,
                       top: 110,
-
                       child: Column(
                         children: [
                           Text(
                             bmi.toStringAsFixed(1),
-
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 28,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
                           Transform.translate(
                             offset: const Offset(0, -2),
-
                             child: const Text(
                               "BMI Calc",
-
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 18,
@@ -169,29 +148,22 @@ class BmiDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    // HEIGHT
                     Positioned(
                       left: 0,
                       bottom: 18,
-
                       child: Column(
                         children: [
                           Text(
                             "$height ",
-
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
                           const SizedBox(height: 3),
-
                           const Text(
                             "Height",
-
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -200,41 +172,31 @@ class BmiDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    // VERTICAL DIVIDER
                     Positioned(
                       left: 89,
                       bottom: 16,
-
                       child: Container(
                         width: 2,
                         height: 55,
                         color: Colors.white54,
                       ),
                     ),
-
-                    // WEIGHT
                     Positioned(
                       left: 108,
                       bottom: 18,
-
                       child: Column(
                         children: [
                           Text(
                             "$weight ",
-
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-
                           const SizedBox(height: 3),
-
                           const Text(
                             "Weight",
-
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -243,13 +205,10 @@ class BmiDetails extends StatelessWidget {
                         ],
                       ),
                     ),
-
-                    // BODY IMAGE
                     Positioned(
                       right: 5,
                       top: 0,
                       bottom: 0,
-
                       child: Image.asset(
                         "assets/images/body.png",
                         width: 100,
@@ -262,53 +221,36 @@ class BmiDetails extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              // =====================================================
-              // BMI INFORMATION CARD
-              // =====================================================
-
               Expanded(
                 child: Container(
                   width: double.infinity,
-
                   padding: const EdgeInsets.all(15),
-
                   decoration: BoxDecoration(
                     color: const Color(0xff006039),
                     borderRadius: BorderRadius.circular(15),
                   ),
-
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-
                       children: [
-                        // CATEGORY
                         Text(
                           bmiCategory,
-
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-
                         const SizedBox(height: 5),
-
-                        // DESCRIPTION
                         Text(
                           description,
-
                           style: const TextStyle(
                             color: Colors.white,
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-
                         const SizedBox(height: 10),
-
-                        // INFORMATION
                         const Text(
                           "Lorem ipsum dolor sit amet consectetur. "
                               "Sagittis ritticidunt dui enim imperdiet sapien "
@@ -320,7 +262,6 @@ class BmiDetails extends StatelessWidget {
                               "Morbi venenatis lectus ultrices euismod. "
                               "Laoreet purus risus amet enim sagittis ut. "
                               "Consectetur libero orci urna.",
-
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 17,
@@ -335,30 +276,21 @@ class BmiDetails extends StatelessWidget {
 
               const SizedBox(height: 15),
 
-              // =====================================================
-              // CALCULATE AGAIN BUTTON
-              // =====================================================
-
               SizedBox(
                 width: double.infinity,
                 height: 38,
-
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
                   },
-
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff484783),
-
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(7),
                     ),
                   ),
-
                   child: const Text(
                     "Calculate BMI Again",
-
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,
@@ -376,4 +308,3 @@ class BmiDetails extends StatelessWidget {
     );
   }
 }
-
